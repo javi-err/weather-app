@@ -14,7 +14,18 @@ export class App extends Component {
     super();
     this.state = {
       city: undefined,
-      country: undefined
+      country: undefined,
+      maindescription: '',
+      description: '',
+      temperature: 0,
+      maxtemp: 0,
+      mintemp: 0,
+      realfeel: 0,
+      humidity: 0,
+      sunrise: '',
+      sunset: '',
+      windspd: 0,
+      winddeg: 0, 
     };
    console.log(this.state)
   }
@@ -30,6 +41,7 @@ export class App extends Component {
     if(this.state.country == 'US') {
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=Denver,US&appid=${apikey}`)
       .then(response => response.json())
+     
       .then(data => this.setState({
         city: data.name,
         country: data.sys.country
@@ -39,13 +51,32 @@ export class App extends Component {
   }
 //handle functions
 
+temperatureConversion = (num) => {
+    let temperatureObj = {}
+    let faren = (Math.floor(((num-273.15))*1.8+32));
+    let celcius;
+
+   return faren;
+}
+
+
   getWeather = () => {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=London,UK&appid=${apikey}`)
-  .then(response => response.json())
+  .then(response => response.json())  
   .then(data => this.setState({
     city: data.name,
-    country: data.sys.country
-    
+    country: data.sys.country,
+    maindescription: data.weather[0].main,
+    description: data.weather[0].description,
+    temperature:data.main.temp,
+    maxtemp: data.main.temp_max,
+    mintemp: data.main.temp_min,
+    realfeel: data.main.feels_like,
+    humidity: data.main.humidity,
+    sunrise: data.sys.sunrise,
+    sunset: data.sys.sunset,
+    windspd: data.wind.speed,
+    winddeg: data.wind.deg, 
   }));
   }
 
@@ -53,7 +84,9 @@ export class App extends Component {
   render() {
     return (
       <div className="App">
-      <Weather city={this.state.city} country={this.state.country}/>
+      <Weather city={this.state.city} country={this.state.country} 
+      maindescription={this.state.maindescription} description={this.state.description}
+      temperature={this.state.temperature} maxtemp={this.state.maxtemp} mintemp={this.state.mintemp} tempConversion={this.temperatureConversion}/>
   </div>
     )
 
