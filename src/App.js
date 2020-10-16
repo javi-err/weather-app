@@ -52,11 +52,11 @@ export class App extends Component {
 //handle functions
 
 temperatureConversion = (num) => {
-    let temperatureObj = {}
-    let faren = (Math.floor(((num-273.15))*1.8+32));
-    let celcius;
+    let temperatureObj = {fahren : '', celcius:''}
+    temperatureObj.fahren = (Math.floor(((num-273.15))*1.8+32));
+    temperatureObj.celcius = (Math.floor(num - 273.15))
 
-   return faren;
+   return temperatureObj;
 }
 
 
@@ -86,7 +86,7 @@ temperatureConversion = (num) => {
       <div className="App">
       <Weather city={this.state.city} country={this.state.country} 
       maindescription={this.state.maindescription} description={this.state.description}
-      temperature={this.state.temperature} maxtemp={this.state.maxtemp} mintemp={this.state.mintemp} tempConversion={this.temperatureConversion}/>
+      temperature={this.state.temperature} realfeel={this.state.realfeel}maxtemp={this.state.maxtemp} mintemp={this.state.mintemp}  tempConversion={this.temperatureConversion}/>
   </div>
     )
 
