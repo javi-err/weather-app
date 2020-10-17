@@ -15,7 +15,7 @@ import React from 'react'
         
         <div>
             <div className="container pa5">
-                <div className="weather-card flex flex-column tc">
+                <div className="weather-card">
                     <div className="weather-title">
                         <h1>{props.city}, {props.country}</h1>
                         <h5>Clear</h5>
