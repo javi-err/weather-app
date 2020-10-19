@@ -18,7 +18,7 @@ import React from 'react'
                 <div className="weather-card">
                     <div className="weather-title">
                         <h1>{props.city}, {props.country}</h1>
-                        <h5>Clear</h5>
+                        <h5>{props.maindescription}</h5>
                     </div>
                     <div className="temperature-container">
                         <div className="temperature">

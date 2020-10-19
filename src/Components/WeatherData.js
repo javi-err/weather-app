@@ -38,8 +38,12 @@ export class WeatherData extends Component {
       }
     render() {
         return (
-            <div>
-                {this.state.humidity}
+            <div className="data-container">
+                <div className="fl w-50 pa2">{this.props.dateConversion(this.state.sunrise)}</div>
+                <div className="fl w-50 pa2">{this.state.sunset}</div>
+                <div className="fl w-50 pa2">{this.state.humidity}</div>
+                <div className="fl w-50 pa2">{this.state.windspd}</div>
+                <div className="fl w-50 pa2">{this.state.winddeg}</div>
             </div>
         )
     }

@@ -30,6 +30,7 @@ export class App extends Component {
 
   componentDidMount() {
     this.getWeather();
+    this.dateConversion();
 
 
   }
@@ -56,9 +57,15 @@ temperatureConversion = (num) => {
    return temperatureObj;
 }
 
+dateConversion = (epoch) => {
+  let myDate = new Date(epoch * 1000);
+  return myDate.toGMTString()+myDate.toLocaleString();
+}
+
+
 
   getWeather = () => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=London,UK&appid=${apikey}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=Toronto,CA &appid=${apikey}`)
   .then(response => response.json())  
   .then(data => this.setState({
     city: data.name,
@@ -84,8 +91,8 @@ temperatureConversion = (num) => {
       <Weather city={this.state.city} country={this.state.country} 
       maindescription={this.state.maindescription} description={this.state.description}
       temperature={this.state.temperature} realfeel={this.state.realfeel}maxtemp={this.state.maxtemp} mintemp={this.state.mintemp}  tempConversion={this.temperatureConversion}/>
-      <WeatherData/>
-  </div>
+      <WeatherData realfeel={this.state.realfeel} tempConversion={this.temperatureConversion} dateConversion={this.dateConversion}/>
+  </div> 
     )
 
 }
