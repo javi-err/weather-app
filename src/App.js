@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Weather from './Components/Weather'
+import WeatherData from './Components/WeatherData'
 import './index.css';
 import 'tachyons'
 
@@ -21,11 +22,7 @@ export class App extends Component {
       maxtemp: 0,
       mintemp: 0,
       realfeel: 0,
-      humidity: 0,
-      sunrise: '',
-      sunset: '',
-      windspd: 0,
-      winddeg: 0, 
+
     };
    console.log(this.state)
   }
@@ -87,6 +84,7 @@ temperatureConversion = (num) => {
       <Weather city={this.state.city} country={this.state.country} 
       maindescription={this.state.maindescription} description={this.state.description}
       temperature={this.state.temperature} realfeel={this.state.realfeel}maxtemp={this.state.maxtemp} mintemp={this.state.mintemp}  tempConversion={this.temperatureConversion}/>
+      <WeatherData/>
   </div>
     )
 
